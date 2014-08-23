@@ -13,4 +13,4 @@ fibby 2 = 1
 fibby x = fibonacci_iter x 3 1 1
 
 
-
+fibseq = [fibby x |x <- [0..]]
