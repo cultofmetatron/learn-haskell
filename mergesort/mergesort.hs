@@ -12,9 +12,16 @@ merge xs ys acc
   | (head xs) <= (head ys) = merge (tail xs) ys (acc ++ [(head xs)])
   | (head xs) > (head ys) = merge xs (tail ys) (acc ++ [(head ys)])
 
+split (x:y:zs)  = let (xs,ys) = split zs in (x:xs,y:ys)
+split [x]       = ([x],[])
+split []        = ([],[])
 
-middleIndex :: (Ord a) => [a] -> Int
-middleIndex as = floor ((length as) / 2)
+
+--mergeSort :: (Ord a) => [a] -> [a]
+mergeSort [] = []
+mergeSort [x] = [x]
+mergeSort zs = let (ls, rs) = split zs
+               in  merge (mergeSort ls) (mergeSort rs) []
 
 
 
