@@ -36,3 +36,14 @@ myFilter f (y:ys)
   | f y = [y] ++ myFilter f ys
   | otherwise = myFilter f ys
 
+myEvery :: (a -> Bool) -> [a] -> Bool
+myEvery f xs = (length xs) == (length (myFilter f xs))
+
+
+
+
+
+
+
+
+
