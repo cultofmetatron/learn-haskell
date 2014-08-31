@@ -16,6 +16,13 @@ myMap f [] = []
 myMap f [a] = [(f a)]
 myMap f (y:ys) = [(f y)] ++ (myMap f ys)
 
+myReduce :: (a -> a -> a) -> a -> [a] -> a
+myReduce f init [] = init
+myReduce f init [y] = f init y
+myReduce f init (y:ys) = myReduce f (f init y) ys
+
+factorial :: (Enum a, Num a) => a -> a
+factorial x = myReduce (*) 1 [1..x]
 
 
 
