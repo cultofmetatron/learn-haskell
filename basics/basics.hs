@@ -24,5 +24,15 @@ myReduce f init (y:ys) = myReduce f (f init y) ys
 factorial :: (Enum a, Num a) => a -> a
 factorial x = myReduce (*) 1 [1..x]
 
+isEven :: (Ord a, Integral a) => a -> Bool
+isEven x = (mod x 2) == 0
 
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter f [] = []
+myFilter f [y]
+  | f y = [y]
+  | otherwise = []
+myFilter f (y:ys)
+  | f y = [y] ++ myFilter f ys
+  | otherwise = myFilter f ys
 
