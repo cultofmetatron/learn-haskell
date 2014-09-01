@@ -39,11 +39,16 @@ myFilter f (y:ys)
 myEvery :: (a -> Bool) -> [a] -> Bool
 myEvery f xs = (length xs) == (length (myFilter f xs))
 
+takie :: (a -> Bool) -> [a] -> [a] -> [a]
+takie p [] [] = []
+takie p [] ys = ys
+takie p (x:xs) ys
+  | p x = takie p xs (ys ++ [x])
+  | otherwise = ys
 
-
-
-
-
+myTakeWhile :: (a -> Bool) -> [a] -> [a]
+myTakeWhile _ [] = []
+myTakeWhile predicate xs = takie predicate xs []
 
 
 
