@@ -35,6 +35,8 @@ myFilter f [y]
 myFilter f (y:ys)
   | f y = [y] ++ myFilter f ys
   | otherwise = myFilter f ys
+--myFilter f ys = myReduce (\check xs y -> if f y then xs ++ y else xs) [] ys
+
 
 myEvery :: (a -> Bool) -> [a] -> Bool
 myEvery f xs = (length xs) == (length (myFilter f xs))
@@ -49,6 +51,12 @@ takie p (x:xs) ys
 myTakeWhile :: (a -> Bool) -> [a] -> [a]
 myTakeWhile _ [] = []
 myTakeWhile predicate xs = takie predicate xs []
+
+summate :: (Num a) => [a] -> a
+summate xs = foldl (\acc x -> acc + x) 0 xs
+
+
+
 
 
 
