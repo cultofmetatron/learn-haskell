@@ -1,6 +1,6 @@
 --helpers
 factorial :: (Enum a, Num a) => a -> a
-factorial n =  foldl (*) 1 [0..n]
+factorial n =  foldl (*) 1 [1..n]
 
 --basic trig functions for workign with complex numbers
 data Complex a = Complex a a deriving (Show)
