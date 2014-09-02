@@ -1,4 +1,14 @@
+module Basics (
+ factorial,
+ myFilter
+ ) where
+
+
+
+
 doubleMe x = x + x
+
+add5 x = x + 5
 
 doubleUs x y = doubleMe x + doubleMe y
 
@@ -33,7 +43,7 @@ myFilter f [y]
   | f y = [y]
   | otherwise = []
 myFilter f (y:ys)
-  | f y = [y] ++ myFilter f ys
+  | f y = y:(myFilter f ys)
   | otherwise = myFilter f ys
 --myFilter f ys = myReduce (\check xs y -> if f y then xs ++ y else xs) [] ys
 
@@ -54,9 +64,6 @@ myTakeWhile predicate xs = takie predicate xs []
 
 summate :: (Num a) => [a] -> a
 summate xs = foldl (\acc x -> acc + x) 0 xs
-
-
-
 
 
 
