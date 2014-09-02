@@ -11,8 +11,14 @@ complexPlus :: (Num t) => Complex t -> Complex t -> Complex t
 taylorPolySine :: Double -> Integer -> Double
 taylorPolySine theta n =  (((-1) ^^ n) / (fromIntegral (factorial ((2 * n) + 1)))) * (theta ^^ (2 * n + 1))
 
-sine theta = sum (map (taylorPolySine theta) [n | n <- [0..100]])
+sine theta = sum $ map (taylorPolySine theta) [n | n <- [0..100]]
 
+taylorPolyCosine :: Double -> Integer -> Double
+taylorPolyCosine theta n = (((-1) ^^ n)/(fromIntegral $ factorial (2 * n))) * (theta ^^ (2 * n))
 
---taylor_sine = [x | x <- [0..]  ]
+cosine theta = sum $ map (taylorPolyCosine theta) [n | n <- [0..100]]
+
+--taylorPolyTangent :: Double -> Integer -> Double
+--taylorPolyTangent theta n = 
+
 
