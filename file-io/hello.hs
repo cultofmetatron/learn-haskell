@@ -1,9 +1,18 @@
 module Main where
 import System.Environment
 
+caller :: IO String
+caller = do
+  line1 <- getLine
+  return line1
 
 main :: IO()
 main = do
-  args  <- getLine
-  args2 <- getLine
-  putStrLn ("Hello " ++ args ++ args2)
+  line <- caller
+  if line == "quit"
+    then do
+      return ()
+    else do
+      putStrLn line
+      main
+

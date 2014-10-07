@@ -15,7 +15,7 @@ doubleUs x y = doubleMe x + doubleMe y
 mult :: (Num a) => a -> a -> a -> a
 mult x y z = x * y * z
 
-divideByTen :: (Floating a) => a -> a  
+divideByTen :: (Floating a) => a -> a
 divideByTen = (/10)
 
 divBy :: (Floating a) => a -> a -> a
@@ -66,4 +66,27 @@ summate :: (Num a) => [a] -> a
 summate xs = foldl (\acc x -> acc + x) 0 xs
 
 
+folder :: Int -> [Int] -> [Int] -> [Int]
+folder _ [] xs = xs
+folder n [x] xs
+  | x < n = folder n [] (xs ++ [x])
+  | otherwise = folder n [] xs
+folder n (y:ys) xs
+  | y < n = folder n ys (xs ++ [y])
+  | otherwise = folder n ys xs
 
+repeater:: Int -> Int  -> [Int]
+repeater n i = map (\x -> i) [0..n]
+
+--f :: Int -> [Int] -> [Int]
+--f n arr = foldr (++) [] (map (repeater n) arr)
+
+--factorial n = foldl (*) 1 [1..n]
+
+computePoly :: Double -> Integer -> Double
+computePoly _ 0 = fromIntegral 1
+computePoly x 1 = x
+computePoly x n = (x ^^ n) / (fromIntegral (factorial n))
+
+solve :: Double -> Double
+solve x = foldl (+) 0 (map (computePoly x) [0..10])
